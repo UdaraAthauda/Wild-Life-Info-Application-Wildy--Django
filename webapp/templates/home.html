@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    
+<!-- Hero Section -->
+<section class="bg-success text-white text-center p-4">
+  <h1>Welcome to Snake Info</h1>
+  <p>Learn about different types of snakes and stay informed.</p>
+</section>
+
+<!-- Search Bar (Not functional without JS) -->
+<div class="container my-3">
+  <input type="text" class="form-control" placeholder="Search for a snake... (not functional)">
+</div>
+
+<!-- Snake Cards -->
+<div class="container">
+  <div class="row">
+
+    <!-- Card 1: King Cobra -->
+    <div class="col-md-4 mb-3">
+      <div class="card h-100">
+        <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="King Cobra">
+        <div class="card-body">
+          <h5 class="card-title">King Cobra</h5>
+          <p class="card-text">World’s longest venomous snake.</p>
+          <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalCobra">More Info</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2: Python -->
+    <div class="col-md-4 mb-3">
+      <div class="card h-100">
+        <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Python">
+        <div class="card-body">
+          <h5 class="card-title">Python</h5>
+          <p class="card-text">Large non-venomous constrictor snake.</p>
+          <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalPython">More Info</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3: Russell's Viper -->
+    <div class="col-md-4 mb-3">
+      <div class="card h-100">
+        <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Russell's Viper">
+        <div class="card-body">
+          <h5 class="card-title">Russell's Viper</h5>
+          <p class="card-text">Highly venomous snake found in Asia.</p>
+          <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalViper">More Info</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3: Russell's Viper -->
+    <div class="col-md-4 mb-3">
+      <div class="card h-100">
+        <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Russell's Viper">
+        <div class="card-body">
+          <h5 class="card-title">Russell's Viper</h5>
+          <p class="card-text">Highly venomous snake found in Asia.</p>
+          <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalViper">More Info</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}
