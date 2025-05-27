@@ -4,8 +4,8 @@
     
 <!-- Hero Section -->
 <section class="bg-success text-white text-center p-4">
-  <h1>Welcome to Snake Info</h1>
-  <p>Learn about different types of snakes and stay informed.</p>
+  <h1>Welcome to Wildy Snake Info</h1>
+  <p>Learn about all types of snakes in Sri Lanka and stay informed.</p>
 </section>
 
 <!-- Search Bar (Not functional without JS) -->
@@ -17,53 +17,24 @@
 <div class="container">
   <div class="row">
 
-    <!-- Card 1: King Cobra -->
+    <!-- Card -->
+    
+    {% for details in snake_details %}
+        
     <div class="col-md-4 mb-3">
       <div class="card h-100">
-        <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="King Cobra">
-        <div class="card-body">
-          <h5 class="card-title">King Cobra</h5>
-          <p class="card-text">World’s longest venomous snake.</p>
-          <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalCobra">More Info</button>
+        <img src="{{ details.image.url }}" class="card-img-top" alt="King Cobra" style="height: 250px; width: auto;">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">{{ details.name }}</h5>
+          <p class="card-text">Scientific Name: <strong>{{ details.scientific_name }}</strong></p>
+          <div class="mt-auto">
+            <a class="btn btn-primary btn-sm" href="">Learn More</a>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Card 2: Python -->
-    <div class="col-md-4 mb-3">
-      <div class="card h-100">
-        <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Python">
-        <div class="card-body">
-          <h5 class="card-title">Python</h5>
-          <p class="card-text">Large non-venomous constrictor snake.</p>
-          <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalPython">More Info</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 3: Russell's Viper -->
-    <div class="col-md-4 mb-3">
-      <div class="card h-100">
-        <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Russell's Viper">
-        <div class="card-body">
-          <h5 class="card-title">Russell's Viper</h5>
-          <p class="card-text">Highly venomous snake found in Asia.</p>
-          <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalViper">More Info</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 3: Russell's Viper -->
-    <div class="col-md-4 mb-3">
-      <div class="card h-100">
-        <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Russell's Viper">
-        <div class="card-body">
-          <h5 class="card-title">Russell's Viper</h5>
-          <p class="card-text">Highly venomous snake found in Asia.</p>
-          <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalViper">More Info</button>
-        </div>
-      </div>
-    </div>
+    {% endfor %}
 
   </div>
 </div>
