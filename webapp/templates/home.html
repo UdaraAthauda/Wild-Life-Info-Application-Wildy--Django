@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load heroicons %}
+
 {% block content %}
     
 <!-- Hero Section -->
@@ -10,7 +12,16 @@
 
 <!-- Search Bar (Not functional without JS) -->
 <div class="container my-3">
-  <input type="text" class="form-control" placeholder="Search for a snake... (not functional)">
+  <form method="post" action="{% url 'home' %}">
+    {% csrf_token %}
+    <div class="input-group">
+      <span class="input-group-text">{% heroicon_outline 'magnifying-glass' %}</span>
+      <input type="text" name="searched" class="form-control" placeholder="Search for snake info...">
+      <div class="input-group-text col-1 bg-primary">
+        <button class="btn btn-sm text-white">Search</button>
+      </div>
+    </div>
+  </form>
 </div>
 
 <!-- Snake Cards -->
@@ -19,6 +30,27 @@
 
     <!-- Card -->
     
+    {% if searched_snake_details %}
+      
+    {% for details in searched_snake_details %}
+        
+    <div class="col-md-4 mb-3">
+      <div class="card h-100">
+        <img src="{{ details.image.url }}" class="card-img-top" alt="King Cobra" style="height: 250px; width: auto;">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">{{ details.name }}</h5>
+          <p class="card-text">Scientific Name: <strong>{{ details.scientific_name }}</strong></p>
+          <div class="mt-auto">
+            <a class="btn btn-primary btn-sm" href="">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% endfor %}
+
+    {% else %}
+
     {% for details in snake_details %}
         
     <div class="col-md-4 mb-3">
@@ -35,6 +67,8 @@
     </div>
 
     {% endfor %}
+
+    {% endif %}
 
   </div>
 </div>
