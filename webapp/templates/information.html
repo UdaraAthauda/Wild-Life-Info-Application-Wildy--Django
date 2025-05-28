@@ -14,9 +14,21 @@
 
 <!-- Image -->
 {% if snake.image %}
-  <div class="container mb-4 text-center">
-    <img src="{{ snake.image.url }}" class="img-fluid w-50" alt="{{ snake.name }}">
+<div class="container mb-4">
+  <div class="row align-items-center">
+    
+    <!-- Image Column -->
+    <div class="col-md-3">
+      <img src="{{ snake.image.url }}" class="img-fluid" alt="{{ snake.name }}">
+    </div>
+    
+    <!-- Link Column -->
+    <div class="col-md-2">
+      <a class="btn btn-sm btn-primary" href="">Write a Blog</a>
+    </div>
+  
   </div>
+</div>
 {% endif %}
 
 <!-- Info Section -->
@@ -35,7 +47,7 @@
       </p>
 
       <h5><strong>Venom Type:</strong></h5>
-      <p class="col-md-4 badge bg-warning fs-6">{{ snake.is_venomous.name }}</p>
+      <p class="col-md-7 badge bg-warning fs-6">{{ snake.is_venomous.venom_type_translation }}-{{ snake.is_venomous.name }}</p>
     </div>
 
     <div class="col-md-6 mb-3">

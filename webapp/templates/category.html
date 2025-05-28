@@ -41,7 +41,7 @@
           <h5 class="card-title">{{ details.name }}</h5>
           <p class="card-text">Scientific Name: <strong>{{ details.scientific_name }}</strong></p>
           <div class="mt-auto">
-            <a class="btn btn-primary btn-sm" href="">Learn More</a>
+            <a class="btn btn-primary btn-sm" href="{% url 'information' details.pk %}">Learn More</a>
           </div>
         </div>
       </div>
@@ -60,7 +60,7 @@
           <h5 class="card-title">{{ details.name }}</h5>
           <p class="card-text">Scientific Name: <strong>{{ details.scientific_name }}</strong></p>
           <div class="mt-auto">
-            <a class="btn btn-primary btn-sm" href="">Learn More</a>
+            <a class="btn btn-primary btn-sm" href="{% url 'information' details.pk %}">Learn More</a>
           </div>
         </div>
       </div>
