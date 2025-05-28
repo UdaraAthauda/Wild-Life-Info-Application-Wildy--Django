@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% load heroicons %}
+
+{% block content %}
+    
+<!-- Header -->
+<header class="bg-success text-white text-center py-4 mb-4">
+  <div class="container">
+    <h1>{{ snake.name }}</h1>
+    <p class="lead"><span class="text-light">Scientific Name:</span> <em>{{ snake.scientific_name }}</em></p>
+  </div>
+</header>
+
+<!-- Image -->
+{% if snake.image %}
+  <div class="container mb-4 text-center">
+    <img src="{{ snake.image.url }}" class="img-fluid w-50" alt="{{ snake.name }}">
+  </div>
+{% endif %}
+
+<!-- Info Section -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <h5><strong>Danger Level:</strong></h5>
+      <p>
+        <span class="badge col-md-2
+          {% if snake.danger_level == 'low' %}bg-success
+          {% elif snake.danger_level == 'moderate' %}bg-warning
+          {% elif snake.danger_level == 'high' %}bg-danger
+          {% else %}bg-danger{% endif %}">
+          {{ snake.get_danger_level_display }}
+        </span>
+      </p>
+
+      <h5><strong>Venom Type:</strong></h5>
+      <p class="col-md-4 badge bg-warning fs-6">{{ snake.is_venomous.name }}</p>
+    </div>
+
+    <div class="col-md-6 mb-3">
+      <h5><strong>Found In:</strong></h5>
+      {% for region in snake.found_in.all %}
+        <span class="badge bg-secondary me-1">{{ region.name }}</span>
+      {% empty %}
+        <p class="text-muted">Unknown</p>
+      {% endfor %}
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Description -->
+  <div class="mb-4">
+    <h4>Description</h4>
+    <p>{{ snake.description }}</p>
+  </div>
+
+  {% if snake.description_translation %}
+  <div class="mb-5">
+    <h4>Translation</h4>
+    <p class="fst-italic text-muted">{{ snake.description_translation }}</p>
+  </div>
+  {% endif %}
+</div>
+
+{% endblock %}

@@ -1,7 +1,6 @@
 from django.db import models
 
 # regional info model
-
 class Region(models.Model):
     name = models.CharField(max_length=100)
     region = models.TextField(blank=True)
@@ -11,7 +10,6 @@ class Region(models.Model):
 
 
 # venom type info model
-
 class VenomType(models.Model):
     VENOM_TYPE = [
         ('non-venomous', 'Non-Venomous'),
@@ -43,7 +41,6 @@ class VenomType(models.Model):
 
 
 # snake info model
-
 class Snake(models.Model):
     COMMON_DANGER_LEVELS = [
         ('low', 'Low'),

@@ -6,13 +6,13 @@
     
 <!-- Hero Section -->
 <section class="bg-success text-white text-center p-4">
-  <h1>Welcome to Wildy Snake Info</h1>
-  <p>Learn about all types of snakes in Sri Lanka and stay informed.</p>
+  <h1>Wildy Snake Category Info</h1>
+  <p>Explore information about various snake species.</p>
 </section>
 
 <!-- Search Bar (Not functional without JS) -->
 <div class="container my-3">
-  <form method="post" action="{% url 'home' %}">
+  <form method="post" action="">
     {% csrf_token %}
     <div class="input-group">
       <span class="input-group-text">{% heroicon_outline 'magnifying-glass' %}</span>
@@ -41,7 +41,7 @@
           <h5 class="card-title">{{ details.name }}</h5>
           <p class="card-text">Scientific Name: <strong>{{ details.scientific_name }}</strong></p>
           <div class="mt-auto">
-            <a class="btn btn-primary btn-sm" href="{% url 'information' details.pk %}">Learn More</a>
+            <a class="btn btn-primary btn-sm" href="">Learn More</a>
           </div>
         </div>
       </div>
@@ -60,7 +60,7 @@
           <h5 class="card-title">{{ details.name }}</h5>
           <p class="card-text">Scientific Name: <strong>{{ details.scientific_name }}</strong></p>
           <div class="mt-auto">
-            <a class="btn btn-primary btn-sm" href="{% url 'information' details.pk %}">Learn More</a>
+            <a class="btn btn-primary btn-sm" href="">Learn More</a>
           </div>
         </div>
       </div>

@@ -33,7 +33,7 @@
                   
                   <!-- display the category dropdown list using cotext_processor -->
                   {% for category in categories %}
-                  <li><a class="dropdown-item" href="">{{ category.name }}</a></li>
+                  <li><a class="dropdown-item" href="{% url 'category' category.pk %}">{{ category.name }}</a></li>
                   {% endfor %}
                </ul>
             </li>
