@@ -10,7 +10,7 @@
   <p>Learn about all types of snakes in Sri Lanka and stay informed.</p>
 </section>
 
-<!-- Search Bar (Not functional without JS) -->
+<!-- Search Bar -->
 <div class="container my-3">
   <form method="post" action="{% url 'home' %}">
     {% csrf_token %}
@@ -34,16 +34,16 @@
       
     {% for details in searched_snake_details %}
         
-    <div class="col-md-4 mb-3">
+    <div class="col-md-3 mb-3">
       <div class="card h-100">
-        <img src="{{ details.image.url }}" class="card-img-top" alt="King Cobra" style="height: 250px; width: auto;">
+        <img src="{{ details.image.url }}" class="card-img-top" alt="King Cobra" style="height: 200px; width: auto;">
         <div class="card-body d-flex flex-column">
           <h5 class="card-title">{{ details.name }}</h5>
           <p class="card-text">Scientific Name: <strong>{{ details.scientific_name }}</strong></p>
           <div class="mt-auto">
             <a class="btn btn-primary btn-sm" href="{% url 'information' details.pk %}">Learn More</a>
             &nbsp;
-            <a class="btn btn-primary btn-sm" href="">Write a Blog</a>
+            <a class="btn btn-primary btn-sm" href="{% url 'write_blogs' details.pk %}">Write a Blog</a>
           </div>
         </div>
       </div>
@@ -55,16 +55,16 @@
 
     {% for details in snake_details %}
         
-    <div class="col-md-4 mb-3">
+    <div class="col-md-3 mb-3">
       <div class="card h-100">
-        <img src="{{ details.image.url }}" class="card-img-top" alt="King Cobra" style="height: 250px; width: auto;">
+        <img src="{{ details.image.url }}" class="card-img-top" alt="King Cobra" style="height: 200px; width: auto;">
         <div class="card-body d-flex flex-column">
           <h5 class="card-title">{{ details.name }}</h5>
           <p class="card-text">Scientific Name: <strong>{{ details.scientific_name }}</strong></p>
           <div class="mt-auto">
             <a class="btn btn-primary btn-sm" href="{% url 'information' details.pk %}">Learn More</a>
             &nbsp;
-            <a class="btn btn-primary btn-sm" href="">Write a Blog</a>
+            <a class="btn btn-primary btn-sm" href="{% url 'write_blogs' details.pk %}">Write a Blog</a>
           </div>
         </div>
       </div>

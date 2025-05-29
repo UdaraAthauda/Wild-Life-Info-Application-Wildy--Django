@@ -13,8 +13,7 @@ def home(request):
         context = {'searched_snake_details': searched_snake_details}
 
         return render(request, 'home.html', context=context)
-    
-   
+
         
     snake_details = Snake.objects.all()
 
@@ -39,6 +38,7 @@ def category(request, cat):
     context = {'snake_details': snake_details}
 
     return render(request, 'category.html', context=context)
+
 
 # single animal information display view
 def information(request, pk):

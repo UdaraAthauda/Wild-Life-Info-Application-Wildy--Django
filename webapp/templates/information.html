@@ -19,12 +19,12 @@
     
     <!-- Image Column -->
     <div class="col-md-3">
-      <img src="{{ snake.image.url }}" class="img-fluid" alt="{{ snake.name }}">
+      <img src="{{ snake.image.url }}" class="img-fluid rounded" alt="{{ snake.name }}">
     </div>
     
     <!-- Link Column -->
     <div class="col-md-2">
-      <a class="btn btn-sm btn-primary" href="">Write a Blog</a>
+      <a class="btn btn-sm btn-primary" href="{% url 'write_blogs' snake.pk %}">Write a Blog</a>
     </div>
   
   </div>

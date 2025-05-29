@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% load heroicons %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    
+<!-- Header -->
+<header class="bg-success text-white text-center py-3 mb-4">
+  <h2>Write a Blog about "{{ snake_details.name }}"</h2>
+</header>
+
+<div class="container">
+  <div class="row">
+    <!-- Snake Info Column -->
+    <div class="col-md-4 mb-4">
+      <div class="border p-3 rounded bg-light">
+        {% if snake_details.image %}
+          <img src="{{ snake_details.image.url }}" class="img-fluid mb-2 rounded" alt="{{ snake_details.name }}">
+        {% else %}
+          <img src="https://via.placeholder.com/300x200?text=No+Image" class="img-fluid mb-2 rounded" alt="No Image">
+        {% endif %}
+        <h4>{{ snake_details.name }}</h4>
+        <p class="text-muted"><em>{{ snake_details.scientific_name }}</em></p>
+        <p>{{ snake_details.description|truncatewords:25 }}</p>
+        <p>
+          <strong>Danger:</strong>
+          <span class="badge 
+            {% if snake_details.danger_level == 'low' %}bg-success
+            {% elif snake_details.danger_level == 'moderate' %}bg-warning
+            {% elif snake_details.danger_level == 'high' %}bg-danger
+            {% else %}bg-dark{% endif %}">
+            {{ snake_details.get_danger_level_display }}
+          </span>
+        </p>
+        <p>
+          <strong>Venom:</strong>
+          <span class="badge bg-warning text-dark fs-6 fw-bold px-2">
+            {{ snake_details.is_venomous.name }}
+          </span>
+        </p>
+      </div>
+    </div>
+
+    <!-- Blog Form Column -->
+    <div class="col-md-8">
+      <div class="p-4 border rounded shadow-sm">
+        <h4>Blog Post Form</h4>
+        <form method="post" action="{% url 'write_blogs' snake_details.pk %}">
+          {% csrf_token %}
+          <div class="mb-4">
+            {{ form|crispy }}
+          </div>
+
+          <input type="hidden" name="snake" value="{{ snake_details.pk }}">
+
+          <button type="submit" class="btn btn-primary">Publish Blog</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

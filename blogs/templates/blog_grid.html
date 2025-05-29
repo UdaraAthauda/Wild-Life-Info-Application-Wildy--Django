@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% load heroicons %}
+
+{% block content %}
+    
+<!-- Hero Section -->
+<section class="bg-success text-white text-center p-4">
+  <h1>Find Blogs by Snake</h1>
+  <p>Be a contributer, inform and be informed, write a blog!</p>
+</section>
+
+<!-- Search Bar -->
+<div class="container my-3">
+  <form method="post" action="">
+    {% csrf_token %}
+    <div class="input-group">
+      <span class="input-group-text">{% heroicon_outline 'magnifying-glass' %}</span>
+      <input type="text" name="searched" class="form-control" placeholder="Search for snake info...">
+      <div class="input-group-text col-1 bg-primary">
+        <button class="btn btn-sm text-white">Search</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="container my-4">
+  <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 g-3">
+    
+    {% for details in snake_details %}    
+    <div class="col">
+      <a href="" class="text-decoration-none text-dark">
+        <div class="card border-0 shadow-sm h-100 text-center">
+          {% if details.image %}
+            <img src="{{ details.image.url }}" class="card-img-top" style="height: 80px; object-fit: cover;" alt="{{ snake.name }}">
+          {% else %}
+            <img src="https://via.placeholder.com/100x80?text=No+Image" class="card-img-top" alt="No Image">
+          {% endif %}
+          <div class="card-body d-flex flex-column p-2">
+            <small class="fw-semibold d-block mb-2">{{ details.name }}</small>
+            <small class="text-primary mt-auto">View Blogs</small>
+          </div>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+
+{% endblock %}
