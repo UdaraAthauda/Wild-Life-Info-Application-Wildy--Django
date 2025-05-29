@@ -29,7 +29,7 @@
     
     {% for details in snake_details %}    
     <div class="col">
-      <a href="" class="text-decoration-none text-dark">
+      <a href="{% url 'read_blogs' details.pk %}" class="text-decoration-none text-dark">
         <div class="card border-0 shadow-sm h-100 text-center">
           {% if details.image %}
             <img src="{{ details.image.url }}" class="card-img-top" style="height: 80px; object-fit: cover;" alt="{{ snake.name }}">

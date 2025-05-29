@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% load heroicons %}
+
+{% block content %}
+
+<!-- Header -->
+<section class="bg-success text-white text-center p-4">
+  <h1>Snake Blogs about "{{ snake.name }}"</h1>
+  <p>Explore what users have shared about different snakes.</p>
+</section>
+
+<div class="container mt-4 text-end"> 
+    <a href="{% url 'write_blogs' snake.pk %}" class="btn btn-primary btn-sm">Write a Blog</a> 
+</div>
+
+<div class="container my-4">
+  {% if blogs %}
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2 g-4">
+      {% for blog in blogs %}
+      <div class="col">
+        <div class="card h-100 shadow-sm border-0">
+          <div class="card-body">
+            <!-- Title and author/date in same row -->
+            <div class="d-flex justify-content-between align-items-start flex-wrap">
+              <h4 class="card-title mb-0">{{ blog.title }}</h4>
+              <small class="text-muted ms-2">
+                by - 
+                {{ blog.author.username }}<br>
+                {{ blog.created_at|date:"M d, Y" }}
+              </small>
+            </div>
+
+            <hr>
+            <p class="card-text mt-2" style="font-size: 1.05rem;">
+              {{ blog.content|truncatewords:30 }}
+            </p>
+          </div>
+
+          {% if blog.snake %}
+          <div class="card-footer border-top text-end">
+            <span class="badge bg-dark px-3 py-2">{{ blog.snake.name }}</span>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="alert alert-info text-center mt-5" role="alert">
+      No blog posts available yet.
+    </div>
+  {% endif %}
+</div>
+
+
+{% endblock %}

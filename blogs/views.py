@@ -15,7 +15,7 @@ def write_blogs(request, pk):
             blog.author = request.user
             blog.snake = snake
             blog.save()
-            return redirect('home')
+            return redirect('blog_grid')
         else:
             print('submit failed...............')
             return render(request, 'blog_post.html', context={'snake_details': snake, 'form': form})
@@ -35,3 +35,13 @@ def blog_grid(request):
     context = {'snake_details': snake_details}
 
     return render(request, 'blog_grid.html', context=context)
+
+
+# read the blogs users wrote
+def read_blogs(request, pk):
+    snake = Snake.objects.get(pk=pk)
+    blogs = BlogPost.objects.filter(snake=snake).order_by('-created_at')
+
+    context = {'blogs': blogs, 'snake': snake}
+
+    return render(request, 'read_blogs.html', context=context)

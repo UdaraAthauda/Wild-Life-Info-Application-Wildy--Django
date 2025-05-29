@@ -41,9 +41,11 @@
           <h5 class="card-title">{{ details.name }}</h5>
           <p class="card-text">Scientific Name: <strong>{{ details.scientific_name }}</strong></p>
           <div class="mt-auto">
-            <a class="btn btn-primary btn-sm" href="{% url 'information' details.pk %}">Learn More</a>
-            &nbsp;
+            <a class="btn btn-primary btn-sm mb-1" href="{% url 'information' details.pk %}">Learn More</a>
+            <br>
             <a class="btn btn-primary btn-sm" href="{% url 'write_blogs' details.pk %}">Write a Blog</a>
+
+            <a class="btn btn-primary btn-sm" href="{% url 'read_blogs' details.pk %}">Read Blogs</a>
           </div>
         </div>
       </div>
@@ -62,9 +64,12 @@
           <h5 class="card-title">{{ details.name }}</h5>
           <p class="card-text">Scientific Name: <strong>{{ details.scientific_name }}</strong></p>
           <div class="mt-auto">
-            <a class="btn btn-primary btn-sm" href="{% url 'information' details.pk %}">Learn More</a>
-            &nbsp;
+            <a class="btn btn-primary btn-sm mb-1" href="{% url 'information' details.pk %}">Learn More</a>
+            <br>
             <a class="btn btn-primary btn-sm" href="{% url 'write_blogs' details.pk %}">Write a Blog</a>
+
+            <a class="btn btn-primary btn-sm" href="{% url 'read_blogs' details.pk %}">Read Blogs</a>
+
           </div>
         </div>
       </div>
