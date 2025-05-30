@@ -41,7 +41,40 @@ def blog_grid(request):
 def read_blogs(request, pk):
     snake = Snake.objects.get(pk=pk)
     blogs = BlogPost.objects.filter(snake=snake).order_by('-created_at')
-
-    context = {'blogs': blogs, 'snake': snake}
+    
+    # Initialize an empty form for comments
+    comment_form = CommentForm()
+    
+    # Create a dictionary to store comments for each blog
+    blog_comments = {}
+    
+    # Get comments for each blog
+    for blog in blogs:
+        blog_comments[blog.id] = blog.comments.all().order_by('-created_at')
+    
+    context = {
+        'blogs': blogs, 
+        'snake': snake, 
+        'comment_form': comment_form,
+        'blog_comments': blog_comments
+    }
 
     return render(request, 'read_blogs.html', context=context)
+
+# add comment to a blog post
+def add_comment(request, blog_id):
+    blog = BlogPost.objects.get(pk=blog_id)
+    
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+
+            if request.user.is_authenticated:
+                comment.author = request.user
+                
+            comment.blog_post = blog
+            comment.save()
+    
+    # Redirect back to the blog page
+    return redirect('read_blogs', pk=blog.snake.pk)

@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% load heroicons %}
+{% load blog_filters %}
 
 {% block content %}
 
@@ -25,8 +26,7 @@
             <div class="d-flex justify-content-between align-items-start flex-wrap">
               <h4 class="card-title mb-0">{{ blog.title }}</h4>
               <small class="text-muted ms-2">
-                by - 
-                {{ blog.author.username }}<br>
+                by - {{ blog.author.username }}<br>
                 {{ blog.created_at|date:"M d, Y" }}
               </small>
             </div>
@@ -35,6 +35,37 @@
             <p class="card-text mt-2" style="font-size: 1.05rem;">
               {{ blog.content|truncatewords:30 }}
             </p>
+            
+            <!-- Comments Section -->
+            <div class="mt-4">
+              <h5 class="mb-3"><i class="bi bi-chat-fill"></i> Comments ({{ blog_comments|get_item:blog.id|length }})</h5>
+              
+              <!-- Comment Form -->
+              <form action="{% url 'add_comment' blog.id %}" method="post" class="mb-3">
+                {% csrf_token %}
+                <div class="form-group">
+                  {{ comment_form.content }}
+                </div>
+                <button type="submit" class="btn btn-sm btn-primary mt-2">Add Comment</button>
+              </form>
+              
+              <!-- Comments List -->
+              {% if blog_comments|get_item:blog.id %}
+                <div class="list-group">
+                  {% for comment in blog_comments|get_item:blog.id %}
+                    <div class="list-group-item list-group-item-action flex-column align-items-start border-0 ps-0 pe-0">
+                      <div class="d-flex w-100 justify-content-between">
+                        <h6 class="mb-1">{{ comment.author.username }}</h6>
+                        <small>{{ comment.created_at|date:"M d, Y" }}</small>
+                      </div>
+                      <p class="mb-1">{{ comment.content }}</p>
+                    </div>
+                  {% endfor %}
+                </div>
+              {% else %}
+                <p class="text-muted">No comments yet. Be the first to comment!</p>
+              {% endif %}
+            </div>
           </div>
 
           {% if blog.snake %}
@@ -44,6 +75,8 @@
           {% endif %}
         </div>
       </div>
+
+      
       {% endfor %}
     </div>
   {% else %}
