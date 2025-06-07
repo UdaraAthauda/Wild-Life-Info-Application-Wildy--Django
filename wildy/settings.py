@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'heroicons',
     'webapp',
     'blogs',
+    'contributor',
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"

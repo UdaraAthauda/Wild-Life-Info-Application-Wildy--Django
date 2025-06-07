@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% load heroicons %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container d-flex justify-content-center mt-4">
+    <div class="col-md-8">
+        <div class="p-4 border rounded shadow-sm">
+            <h4 class="mb-4">Sign-Up Form</h4>
+            <form method="post" action="{% url 'user_signup' %}">
+                {% csrf_token %}
+                <div class="mb-4">
+                {{ form|crispy }}
+                </div>
+
+                <button type="submit" class="btn btn-primary col-2">Submit</button>
+                &nbsp;
+                <span>if already have an account <a href="{% url 'user_login' %}">login!</a></span>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

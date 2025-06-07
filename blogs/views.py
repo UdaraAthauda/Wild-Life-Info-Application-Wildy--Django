@@ -2,9 +2,11 @@ from django.shortcuts import render, redirect
 from .forms import *
 from .models import *
 from webapp.models import Snake
+from django.contrib.auth.decorators import login_required
 
 
 # write a blog page view
+@login_required(login_url='user_login')
 def write_blogs(request, pk):
     if request.method == 'POST':
         form = BlogPostForm(request.POST)
